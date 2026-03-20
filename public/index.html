@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bible Fellowship Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Login Screen ─────────────────────────────────────────────── -->
+  <div id="login-screen" class="screen active">
+    <div class="login-card">
+      <div class="login-logo">✝️</div>
+      <h1 class="login-title">Bible Fellowship Chat</h1>
+      <p class="login-subtitle">Real-time chat for Bible study &amp; fellowship</p>
+
+      <div class="verse-of-day-box" id="vod-login">
+        <span class="vod-label">✨ Verse of the Day</span>
+        <p class="vod-text" id="vod-text-login">Loading…</p>
+        <span class="vod-ref" id="vod-ref-login"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="username-input">Your Name</label>
+        <input type="text" id="username-input" placeholder="Enter your name…" maxlength="30" autocomplete="off" />
+      </div>
+
+      <div class="form-group">
+        <label>Pick a color</label>
+        <div class="color-picker" id="color-picker"></div>
+      </div>
+
+      <button class="btn btn-primary btn-full" id="enter-btn">Enter Fellowship →</button>
+    </div>
+  </div>
+
+  <!-- ── Main App ──────────────────────────────────────────────────── -->
+  <div id="app-screen" class="screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo">✝️</span>
+        <span class="sidebar-title">Bible Chat</span>
+        <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+      </div>
+
+      <!-- Verse of the Day in sidebar -->
+      <div class="sidebar-vod">
+        <div class="vod-label">✨ Verse of the Day</div>
+        <div class="vod-text" id="vod-text-sidebar">…</div>
+        <div class="vod-ref" id="vod-ref-sidebar"></div>
+      </div>
+
+      <!-- Rooms -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-header">
+          <span>💬 Rooms</span>
+          <button class="btn-icon" id="create-room-btn" title="Create new room">＋</button>
+        </div>
+        <ul class="room-list" id="room-list"></ul>
+      </div>
+
+      <!-- Verse Search -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-header">📖 Verse Search</div>
+        <div class="search-row">
+          <input type="text" id="verse-search-input" placeholder="Search verses…" maxlength="80" />
+          <button class="btn btn-sm btn-primary" id="verse-search-btn">Search</button>
+        </div>
+        <ul class="verse-results" id="verse-results"></ul>
+      </div>
+
+      <!-- Bible Bot Mode -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-header">🤖 Bible Bot Mode</div>
+        <p class="bot-hint">Type <code>/bot &lt;topic&gt;</code> in chat</p>
+        <div class="bot-mode-btns">
+          <button class="bot-mode-btn active" data-mode="A" title="Short &amp; Encouraging">A 🌟</button>
+          <button class="bot-mode-btn" data-mode="B" title="Contextual">B 📚</button>
+          <button class="bot-mode-btn" data-mode="C" title="Deep Study">C 🔬</button>
+        </div>
+        <div class="bot-mode-labels">
+          <span>Short &amp; Encouraging</span>
+          <span>Contextual</span>
+          <span>Deep Study</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main chat area -->
+    <main class="chat-main">
+      <!-- Top bar -->
+      <header class="chat-header">
+        <button class="btn-icon sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <div class="chat-header-info">
+          <span class="chat-room-name" id="chat-room-name">Select a room</span>
+          <span class="participant-badge" id="participant-count">
+            <span class="dot"></span><span id="count-num">0</span> online
+          </span>
+        </div>
+        <div class="header-right">
+          <span class="user-badge" id="user-badge"></span>
+        </div>
+      </header>
+
+      <!-- Messages -->
+      <div class="messages-wrap" id="messages-wrap">
+        <div class="messages" id="messages">
+          <div class="welcome-placeholder">
+            <div class="welcome-icon">✝️</div>
+            <p>Welcome! Select a room on the left to start chatting.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input area -->
+      <footer class="chat-footer" id="chat-footer">
+        <div class="input-row">
+          <textarea
+            id="msg-input"
+            placeholder="Type a message… or /bot love for Bible Bot"
+            rows="1"
+            maxlength="1000"
+          ></textarea>
+          <button class="btn btn-primary send-btn" id="send-btn" aria-label="Send message">➤</button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ── Create Room Modal ─────────────────────────────────────────── -->
+  <div class="modal-overlay" id="create-room-modal" hidden>
+    <div class="modal">
+      <h2>Create a New Room</h2>
+      <div class="form-group">
+        <label for="new-room-name">Room Name</label>
+        <input type="text" id="new-room-name" placeholder="e.g. Sunday School…" maxlength="50" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancel-create-room">Cancel</button>
+        <button class="btn btn-primary" id="confirm-create-room">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
