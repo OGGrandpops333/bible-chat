@@ -1,0 +1,26 @@
+{
+  "name": "bible-chat",
+  "version": "1.0.0",
+  "description": "Bible Fellowship Multi-Room Chat is a free, real-time chat app for fellowship groups. Join or create rooms, chat with colorful usernames, get Bible Bot responses in three modes, search verses, view Verse of the Day, and track active participants. Works instantly on PC and mobile browsers.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OGGrandpops333/bible-chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/OGGrandpops333/bible-chat/issues"
+  },
+  "homepage": "https://github.com/OGGrandpops333/bible-chat#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  }
+}
